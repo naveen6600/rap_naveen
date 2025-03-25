@@ -1,0 +1,121 @@
+managed;
+strict ( 2 );
+
+define behavior for Zhr_empcds58 //alias <alias_name>
+implementation in class zbp_hr_empcds58 unique
+persistent table zdt_hr_emp58
+lock master
+authorization master ( instance )
+//etag master lastchange
+{
+  create;
+  update;
+  delete;
+
+  association _empaddrs { create; }
+  association _empcontract { create; }
+  association _empmt { create; }
+  association _empfamily { create; }
+
+  mapping for zdt_hr_emp58
+    {
+      empid       = emp_id;
+      firstname   = first_name;
+      lastname    = last_name;
+      DatOfBir    = dat_of_bir;
+      gender      = gender;
+      Nationality = nationality;
+    }
+}
+
+define behavior for Zhr_addresscds58 //alias <alias_name>
+implementation in class zbp_hr_empaddrs58 unique
+persistent table zdt_hr_add58
+lock dependent by _empcds
+authorization dependent by _empcds
+//etag master lastchange
+{
+  update;
+  delete;
+  field ( readonly ) EmpId;
+  association _empcds;
+
+  mapping for zdt_hr_add58
+    {
+      EmpId       = emp_id;
+      Addresstype = addresstype;
+      Country     = country;
+      City        = city;
+      Street      = street;
+      Postalcode  = postalcode;
+    }
+}
+
+define behavior for Zhr_contract58cds //alias <alias_name>
+implementation in class zbp_hr_empcntrct58 unique
+persistent table zhr_contract58
+lock dependent by _empcds
+authorization dependent by _empcds
+//etag master lastchange
+{
+
+  update;
+  delete;
+  field ( readonly ) EmpId;
+  association _empcds;
+  mapping for zhr_contract58
+    {
+      EmpId         = emp_id;
+      Contracttype  = contracttype;
+      Startdate     = startdate;
+      Enddate       = enddate;
+      Payscalegroup = payscalegroup;
+      Payscalelevel = payscalelevel;
+    }
+}
+
+define behavior for Zhr_empmtcds58 //alias <alias_name>
+implementation in class zbp_hr_empmt unique
+persistent table zdt_hr_empmt58
+lock dependent by _empcds
+authorization dependent by _empcds
+//etag master lastchange
+{
+  update;
+  delete;
+  field ( readonly ) EmpId;
+  association _empcds;
+
+  mapping for zdt_hr_empmt58
+    {
+      EmpId        = emp_id;
+      CompCode     = comp_code;
+      Personalarea = personalarea;
+      EmpGrp       = emp_grp;
+      EmpSubGrp    = emp_sub_grp;
+      CostCenter   = cost_center;
+    }
+}
+
+define behavior for Zhr_familycds58 //alias <alias_name>
+implementation in class zbp_hr_empfamily58 unique
+persistent table zhr_family58
+
+lock dependent by _empcds
+authorization dependent by _empcds
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) EmpId;
+  association _empcds;
+  mapping for zhr_family58
+    {
+      EmpId            = emp_id;
+      Familymemberid   = familymemberid;
+      Familymembername = familymembername;
+      Dateofbirth      = dateofbirth;
+      Relationship     = relationship;
+      Gender           = gender;
+    }
+}

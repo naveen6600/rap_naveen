@@ -1,0 +1,100 @@
+managed;
+strict ( 2 );
+
+define behavior for zinv_cds_curnt_stkl //alias <alias_name>
+implementation in class zbp_inv_cds_curnt_stkl unique
+persistent table zinv_curnt_stk58
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+
+  association _mtmvmt { create; }
+  association _slwmvmt { create; }
+  association _invstck { create; }
+
+  mapping for zinv_curnt_stk58
+    {
+      Materialid      = materialid;
+      Plant           = plant;
+      Quantity        = quantity;
+      Storagelocation = storagelocation;
+      Stocktype       = stocktype;
+      Unit            = unit;
+      Unitofmeasure   = unitofmeasure;
+      Value           = value;
+    }
+}
+define behavior for zinv_materialmvmt58 //alias <alias_name>
+implementation in class zbp_inv_cds_curnt_stkl2 unique
+persistent table zinv_materialm58
+lock dependent by _invcds
+authorization dependent by _invcds
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Materialid, Plant;
+  association _invcds;
+  mapping for zinv_materialm58
+    {
+      Materialid      = materialid;
+      Movementid      = movementid;
+      Movementdate    = movementdate;
+      Movementtype    = movementtype;
+      Plant           = plant;
+      Quantity        = quantity;
+      Storagelocation = storagelocation;
+      Unitofmeasure   = unitofmeasure;
+    }
+}
+
+define behavior for Zinv_slow_mvmtcds //alias <alias_name>
+implementation in class zbp_inv_cds_curnt_stkl3 unique
+persistent table zinv_slow_movg58
+lock dependent by _invcds
+authorization dependent by _invcds
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Materialid, Plant;
+  association _invcds;
+  mapping for zinv_slow_movg58
+    {
+      Materialid          = materialid;
+      Plant               = plant;
+      Quantity            = quantity;
+      Storagelocation     = storagelocation;
+      Unitofmeasure       = unitofmeasure;
+      Dayswithoutmovemnet = dayswithoutmovemnet;
+      Lastmovementdate    = lastmovementdate;
+      Value               = value;
+    }
+}
+
+define behavior for Zinv_stock_val58_cds //alias <alias_name>
+implementation in class zbp_inv_cds_curnt_stkl4 unique
+persistent table zinv_stock_val58
+lock dependent by _invcds
+authorization dependent by _invcds
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Materialid, Plant;
+  association _invcds;
+  mapping for zinv_stock_val58
+    {
+      Materialid    = materialid;
+      Plant         = plant;
+      Quantity      = quantity;
+      Unitofmeasure = unitofmeasure;
+      Valuationdate = valuationdate;
+      Value         = value;
+      Valutiontype  = valutiontype;
+    }
+}

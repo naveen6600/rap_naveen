@@ -1,0 +1,5 @@
+CLASS zbp_hr_empcds58projection DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zhr_empcds58projection.
+ENDCLASS.
+
+CLASS zbp_hr_empcds58projection IMPLEMENTATION.
+ENDCLASS.

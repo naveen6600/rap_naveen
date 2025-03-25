@@ -1,0 +1,49 @@
+projection implementation in class zbp_hr_empcds58projection unique;
+strict ( 2 );
+
+define behavior for Zhr_empcds58Projection //alias <alias_name>
+{
+   use create;
+   use update;
+   use delete;
+
+  use association _empaddrs { create ;}
+  use association _empcontract { create; }
+  use association _empmt { create; }
+  use association _empfamily { create; }
+}
+
+define behavior for Zhr_addresscds58projection //alias <alias_name>
+{
+
+  use update;
+  use delete;
+
+  use association _empcds;
+}
+
+define behavior for Zhr_contract58cdsProjection //alias <alias_name>
+{
+
+  use update;
+  use delete;
+
+  use association _empcds;
+}
+
+define behavior for Zhr_empmtcds58projection //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _empcds;
+}
+
+define behavior for Zhr_familycds58projection //alias <alias_name>
+{
+
+  use update;
+  use delete;
+
+  use association _empcds;
+}

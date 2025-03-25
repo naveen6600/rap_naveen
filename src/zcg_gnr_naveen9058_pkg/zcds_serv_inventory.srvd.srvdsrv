@@ -1,0 +1,7 @@
+@EndUserText.label: 'inventory managment'
+define service Zcds_serv_inventory {
+  expose zinv_cds_curnt_stkl_projection;
+  expose ZINV_MATERIALMVMT58_projection;
+  expose Zinv_slow_mvmtcds_projection;
+  expose Zinv_stock_val58_projection;
+}

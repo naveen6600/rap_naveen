@@ -1,0 +1,5 @@
+CLASS zbp_inv_cds_curnt_stkl2 DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zinv_cds_curnt_stkl.
+ENDCLASS.
+
+CLASS zbp_inv_cds_curnt_stkl2 IMPLEMENTATION.
+ENDCLASS.

@@ -1,0 +1,14 @@
+@EndUserText.label: 'employee details for hr'
+define service Zserv_empdetails {
+
+
+
+
+
+
+  expose Zhr_empcds58Projection;
+  expose Zhr_empmtcds58projection;
+  expose Zhr_addresscds58projection;
+  expose Zhr_familycds58projection;
+  expose Zhr_contract58cdsProjection;
+}

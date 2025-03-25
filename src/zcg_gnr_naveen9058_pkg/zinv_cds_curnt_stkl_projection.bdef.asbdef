@@ -1,0 +1,37 @@
+projection;
+strict ( 2 );
+
+define behavior for zinv_cds_curnt_stkl_projection //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _mtmvmt { create; }
+  use association _slwmvmt { create; }
+  use association _invstck { create; }
+}
+
+define behavior for ZINV_MATERIALMVMT58_projection //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _invcds;
+}
+
+define behavior for Zinv_slow_mvmtcds_projection //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _invcds;
+}
+
+define behavior for Zinv_stock_val58_projection //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _invcds;
+}

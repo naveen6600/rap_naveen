@@ -1,0 +1,25 @@
+CLASS zreportprogram58 DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    INTERFACES if_oo_adt_classrun .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS ZREPORTPROGRAM58 IMPLEMENTATION.
+
+
+  METHOD if_oo_adt_classrun~main.
+
+         out->write( 10 + 20 ).
+
+
+
+  ENDMETHOD.
+ENDCLASS.

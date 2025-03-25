@@ -1,0 +1,5 @@
+@EndUserText.label: 'employeemater'
+define service ZSRV_empmast58 {
+  expose ZC_empallcprojection58;
+  expose ZC_empmstrProjection58;
+}

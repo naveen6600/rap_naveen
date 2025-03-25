@@ -1,0 +1,55 @@
+managed ;
+strict ( 2 );
+
+define behavior for ZRP_EMPMST58 //alias <alias_name>\
+implementation in class zbp_rp_empmst58 unique
+persistent table zdt_empmast58
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+//  field ( readonly ) EmpId;
+  association _empalloc { create; }
+  mapping for zdt_empmast58
+  {
+  EmpId =  emp_id ;
+  EmpName = emp_name;
+  CompanyName = company_name ;
+  Designation = designation;
+
+  }
+}
+
+define behavior for ZRP_EMPALLC58 //alias <alias_name>
+implementation in class zbp_rp_empALLC58 unique
+persistent table zdt_emp_aln58
+lock dependent by _empmast
+authorization dependent by _empmast
+
+{
+//create;
+
+  update;
+  delete;
+  field ( readonly ) EmpId;
+  association _empmast;
+
+
+   mapping for zdt_emp_aln58
+  {
+  EmpId =  emp_id ;
+  AllocationId = allocation_id ;
+  ProfitCenter = profit_center;
+  AllocationPer = allocation_per;
+  Active = active ;
+  Status = status;
+  ToDate = to_date;
+  FromDate = from_date;
+
+
+  }
+
+}

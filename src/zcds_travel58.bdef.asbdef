@@ -1,0 +1,44 @@
+managed;// implementation in class zbp_cds_travel58 unique;
+strict ( 2 );
+
+define behavior for Zcds_travel58 //alias <alias_name>
+implementation in class zbp_cds_travel58 unique
+persistent table zdt_travel58
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) TravelId;
+  association _Booking { create; }
+}
+
+define behavior for ZRP_BOOKING58 //alias <alias_name>
+implementation in class zbp_cds_booking58 unique
+persistent table zdt_booking58
+lock dependent by _Travel
+authorization dependent by _Travel
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) TravelId, BookingId;
+  association _Travel;
+  association _supply { create; }
+}
+
+define behavior for ZRp_Supply58 //alias <alias_name>
+implementation in class zbp_cds_supply58 unique
+persistent table zdt_supply58
+lock dependent by _Travel
+authorization dependent by _Travel
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) TravelId, BookingId, BookingSupplementId;
+  association _Travel;
+  association _booking;
+}
